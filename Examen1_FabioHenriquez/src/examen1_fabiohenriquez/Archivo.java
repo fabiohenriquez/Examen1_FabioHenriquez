@@ -5,13 +5,23 @@ import java.util.Date;
 
 
 public class Archivo {
-    private String nombre;
-    private double tamaño;
-    private Date fecha_c;
-    private Date fecha_mod;
+    
+    protected  String nombre;
+    protected String tamaño;
+    protected Date fecha_c;
+    protected Date fecha_mod;
 
     public Archivo() {
     }
+
+    public Archivo(String nombre, String tamaño, Date fecha_c, Date fecha_mod) {
+        this.nombre = nombre;
+        this.tamaño = tamaño;
+        this.fecha_c = fecha_c;
+        this.fecha_mod = fecha_mod;
+    }
+    
+    
 
     public String getNombre() {
         return nombre;
@@ -21,11 +31,11 @@ public class Archivo {
         this.nombre = nombre;
     }
 
-    public double getTamaño() {
+    public String getTamaño() {
         return tamaño;
     }
 
-    public void setTamaño(double tamaño) {
+    public void setTamaño(String tamaño) {
         this.tamaño = tamaño;
     }
 

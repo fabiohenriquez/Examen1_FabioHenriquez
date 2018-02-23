@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 
 public class Sistema {
-    private ArrayList<Archivo> archivos = new ArrayList();
+    private ArrayList archivos = new ArrayList();
     private String nombre;
     private String usuario;
     private double capacidad;
@@ -20,11 +20,11 @@ public class Sistema {
         this.capacidad = capacidad;
     }
 
-    public ArrayList<Archivo> getArchivos() {
+    public ArrayList getArchivos() {
         return archivos;
     }
 
-    public void setArchivos(ArrayList<Archivo> archivos) {
+    public void setArchivos(ArrayList archivos) {
         this.archivos = archivos;
     }
 
@@ -62,7 +62,7 @@ public class Sistema {
 
     @Override
     public String toString() {
-        return "Sistema{" + "archivos=" + archivos + ", nombre=" + nombre + '}';
+        return usuario+"/" + carpeta_Raiz+'/';
     }
     
     
