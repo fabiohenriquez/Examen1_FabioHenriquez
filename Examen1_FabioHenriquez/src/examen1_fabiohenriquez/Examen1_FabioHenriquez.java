@@ -22,14 +22,9 @@ public class Examen1_FabioHenriquez {
     public static void main(String[] args) {
          int res = 0;
         do {
-        String nombre = JOptionPane.showInputDialog(null, "Ingrese el nombre del sistema: \n");
-        String usuario = JOptionPane.showInputDialog(null, "Ingrese el Usuario: \n");
-        Double bytes = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el tamaño (en bytes)"));
-        sistemas.setNombre(nombre);
-        sistemas.setUsuario(usuario);
-        sistemas.setCapacidad(bytes);
+       
         switch (MenuArchivos()) {
-            case 1:
+            case 2:
                 if (raiz.getDocumentos().size() < 1) {
                     JOptionPane.showMessageDialog(null, "No hay carpetas o archivos");
                 } else {
@@ -37,17 +32,23 @@ public class Examen1_FabioHenriquez {
                     EntraSub(raiz);
                 }
                 break;
-            case 2:
+            case 3:
                  JOptionPane.showMessageDialog(null, "Esta en la raiz");
                 Regresar(raiz);
                
                 break;
-            case 3:
+            case 4:
                 CrearArchivo(raiz);
 
                 break;
-            case 4:
-                CrearCarpeta(raiz);
+            case 1:
+                String nombre = JOptionPane.showInputDialog(null, "Ingrese el nombre del sistema: \n");
+                String usuario = JOptionPane.showInputDialog(null, "Ingrese el Usuario: \n");
+                Double bytes = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el tamaño (en bytes)"));
+                sistemas.setNombre(nombre);
+                sistemas.setUsuario(usuario);
+                sistemas.setCapacidad(bytes);
+                JOptionPane.showMessageDialog(null, "Sistema creado usted esta en : "+ sistemas.toString());
                 break;
             case 5:
                 Listac(raiz);
@@ -64,16 +65,15 @@ public class Examen1_FabioHenriquez {
 
     }//Fin del main
     public static int MenuArchivos() {
-        int opcion = Integer.parseInt(JOptionPane.showInputDialog(null, ""
-                + "Usted esta en :  "
-                + sistemas.toString() + "\n"
-                + "--Menu--\n"
-                + "1. Entrar en una subcarpeta\n"
-                + "2. Regresar a una carpeta anterior\n"
-                + "3. Crear un archivo\n"
-                + "4. Crear una carpeta\n"
-                + "5. Lista directorio actual\n"
-                + "6. Listar todo FileSystem\n"));
+        int opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "Gestor de Archivos \n"
+                
+                + " --Menu--\n"
+                + "1.Crear el sistema \n"
+                + "2. Entrar en una subcarpeta \n"
+                + "3. Regresar a una carpeta anterior \n"
+                + "4. Comandos para Crear un Archivo \n"
+                + "5. Comandos para modificar \n"
+                + "6. Comando para Listar \n"));
 
         return opcion;
     }
@@ -83,7 +83,7 @@ public class Examen1_FabioHenriquez {
     public static void SistemaArchivos() {
 
         switch (MenuArchivos()) {
-            case 1:
+            case 2:
                 if (raiz.getDocumentos().size() < 1) {
                     JOptionPane.showMessageDialog(null, "No hay carpetas o archivos");
                 } else {
@@ -91,33 +91,33 @@ public class Examen1_FabioHenriquez {
                     EntraSub(raiz);
                 }
                 break;
-            case 2:
+            case 3:
                  JOptionPane.showMessageDialog(null, "Esta en la raiz");
                 Regresar(raiz);
                
                 break;
-            case 3:
+            case 4:
                 CrearArchivo(raiz);
 
                 break;
-            case 4:
-                CrearCarpeta(raiz);
-                break;
             case 5:
+                modificar_Archivo(raiz);
+
+            break;
+            case 6:
                 Listac(raiz);
                 break;
-            case 6:
-                Listaall();
-                break;
-
         }
     }//Fin del metodo sistemaarchivos
 
-    //archivo
+//archivo
+    public static void modificar_Archivo(Carpeta c){
+    
+    }
     public static void EntraSub(Carpeta c) {
         String s = "";
         boolean aux=true;
-        for (Fichero t : c.getDocumentos()) {
+        for (Archivo t : c.getDocumentos()) {
             if (t instanceof Carpeta) {
                 s += c.getDocumentos().indexOf(t) + " - " + t + "\n";
             }
@@ -128,10 +128,7 @@ public class Examen1_FabioHenriquez {
             
                 opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "Elija a que carpeta acceder\n" + s,"Elija",JOptionPane.DEFAULT_OPTION));
                 
-            
-            
-        
-        
+           
         switch (MenuArchivos()) {
             case 1:
 
@@ -139,19 +136,17 @@ public class Examen1_FabioHenriquez {
 
                 break;
             case 2:
-                Regresar(c.getPerteneceA());
+                
                 break;
             case 3:
                 CrearArchivo((Carpeta) c.getDocumentos().get(opcion));
 
                 break;
+            
             case 4:
-                CrearCarpeta(((Carpeta) c.getDocumentos().get(opcion)));
-                break;
-            case 5:
                 Listac((Carpeta) c.getDocumentos().get(opcion));
                 break;
-            case 6:
+            case 5:
                 Listaall();
                 break;
         }
@@ -171,13 +166,11 @@ public class Examen1_FabioHenriquez {
             case 3:
                 CrearArchivo(c);
                 break;
+            
             case 4:
-                CrearCarpeta(c);
-                break;
-            case 5:
                 Listac(c);
                 break;
-            case 6:
+            case 5:
                 Listaall();
                 break;
 
@@ -186,53 +179,29 @@ public class Examen1_FabioHenriquez {
     }//Fin metod regresa
 
     public static void CrearArchivo(Carpeta c) {
-        Archivo ar = new Archivo();
-        String contenido = JOptionPane.showInputDialog(null, "Ingrese un contenido"
-                + "de la carpeta");
-        ar.setContenido(contenido);
-        ar.setFechaCreacion(fecha);
-        ar.setHechoPor(JOptionPane.showInputDialog(null, "Ingrese por quien fue hecho"));
-        ar.setNombre(JOptionPane.showInputDialog(null, "Ingrese le nombre"));
-        ar.setPerteneceA(c);
-        boolean aux = true;
-        while (aux) {
-            try {
-                ar.setTamaño(Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el tamaño de 0 a 1024")));
-                aux = false;
-            } catch (Excepcion ex) {
-                aux = true;
-                JOptionPane.showMessageDialog(null, "No se puede no son los tamaños requeridos");
-            }
-        }//FIn del while
+        
+        String comando = JOptionPane.showInputDialog(null,"Usted esta en : "+
+        sistemas.toString());
+        String com = comando.split(" ")[0];
+        String nom= comando.split(" ")[1];
+        String size = comando.split(" ")[2];
+        if (com.equals("mkdir")) {
+           sistemas.getArchivos().add(new Carpeta(nom, size, new Date(), new Date()));
+            JOptionPane.showMessageDialog(null, "Carpeta Creada");
+            sistemas.setCarpeta_Raiz(nom);
+        }else if(com.equals("cat")){
+            String algo = JOptionPane.showInputDialog(null,"Ingrese el archivo de texto");
+            sistemas.getArchivos().add(new Archivo_Texto(algo));
+        }
+              
 
-        c.getDocumentos().add(ar);
+       
 
     }//Fin metodo creararchivo
 
-    public static void CrearCarpeta(Carpeta c) {
-        Carpeta ca = new Carpeta();
-
-        ca.setFechaCreacion(fecha);
-        ca.setHechoPor(JOptionPane.showInputDialog(null, "Ingrese por quien fue hecho"));
-        ca.setNombre(JOptionPane.showInputDialog(null, "Ingrese le nombre"));
-        ca.setPerteneceA(c);
-
-        boolean aux = true;
-        while (aux) {
-            try {
-                ca.setTamaño(Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el tamaño de 0 a 1024")));
-                aux = false;
-            } catch (Excepcion ex) {
-                aux = true;
-                JOptionPane.showMessageDialog(null, "No se puede no son los tamaños requeridos");
-            }
-        }//FIn del while
-        c.getDocumentos().add(ca);
-    }//Fin metodo crear carpeta
-
     public static void Listac(Carpeta c) {
         String s = "";
-        for (Fichero t : c.getDocumentos()) {
+        for (Archivo t : c.getDocumentos()) {
             s += c.getDocumentos().indexOf(t) + " - " + t + "\n";
         }
 
@@ -241,7 +210,7 @@ public class Examen1_FabioHenriquez {
 
     public static void Listaall() {
         String s = "";
-        for (Fichero t : raiz.getDocumentos()) {
+        for (Archivo t : raiz.getDocumentos()) {
             s += raiz.getDocumentos().indexOf(t) + " - " + t + "\n";
         }
 
