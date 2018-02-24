@@ -57,7 +57,7 @@ public class Archivo {
 
     @Override
     public String toString() {
-        return "Archivo{" + "nombre=" + nombre + ", tama\u00f1o=" + tamaño + ", fecha_c=" + fecha_c + ", fecha_mod=" + fecha_mod + '}';
+        return "Archivo{" + "nombre=" + nombre + ", tamaño" + tamaño + ", fecha_c=" + fecha_c + ", fecha_mod=" + fecha_mod + '}';
     }
     
     

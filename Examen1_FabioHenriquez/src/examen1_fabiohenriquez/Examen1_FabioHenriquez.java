@@ -192,6 +192,8 @@ public class Examen1_FabioHenriquez {
         }else if(com.equals("cat")){
             String algo = JOptionPane.showInputDialog(null,"Ingrese el archivo de texto");
             sistemas.getArchivos().add(new Archivo_Texto(algo));
+        }else if (com.equals("mod") ){
+            String algo = JOptionPane.showInputDialog(null,"Aun no se puede modificar | espere la proxima actualizacion");
         }
               
 
@@ -202,7 +204,7 @@ public class Examen1_FabioHenriquez {
     public static void Listac(Carpeta c) {
         String s = "";
         for (Archivo t : c.getDocumentos()) {
-            s += c.getDocumentos().indexOf(t) + " - " + t + "\n";
+            s += c.getDocumentos().indexOf(t) + " - " + c.toString() + "\n";
         }
 
         JOptionPane.showMessageDialog(null, s);
